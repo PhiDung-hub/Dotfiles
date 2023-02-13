@@ -17,6 +17,7 @@ ts.setup({
   auto_install = true,
   ensure_installed = {
     "markdown",
+    "markdown_inline",
     "javascript",
     "typescript",
     "tsx",
