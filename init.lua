@@ -1,6 +1,6 @@
-require("base")
-require("highlights")
-require("maps")
+require("config.autocmds")
+require("config.options")
+require("config.keymaps")
 require("plugins")
 
 local has = vim.fn.has
