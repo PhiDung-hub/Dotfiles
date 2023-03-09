@@ -52,10 +52,8 @@ return {
         ---Extra mapping; `gco`, `gcO`, `gcA`
         extra = true,
       },
-
       -- Function to call before (un)comment
       -- Support for Comment.nvim: https://github.com/JoosepAlviste/nvim-ts-context-commentstring/blob/main/lua/ts_context_commentstring/integrations/comment_nvim.lua#L20
-      ---@param ctx CommentCtx
       ---@return string|nil
       pre_hook = function(ctx)
         local U = require("Comment.utils")
@@ -80,5 +78,6 @@ return {
         })
       end,
     })
-  end
+  end,
 }
+

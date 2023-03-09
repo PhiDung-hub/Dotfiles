@@ -1,21 +1,9 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-local function bind(op, outer_opts)
-  outer_opts = outer_opts or { noremap = true }
-  return function(lhs, rhs, opts)
-    opts = vim.tbl_extend("force", outer_opts, opts or {})
-    vim.keymap.set(op, lhs, rhs, opts)
-  end
-end
+local M = require("helpers.keymap")
 
-local map = bind("", { noremap = false })
-local nmap = bind("n", { noremap = false })
-local noremap = bind("")
-local nnoremap = bind("n")
-local vnoremap = bind("v")
-local xnoremap = bind("x")
-local inoremap = bind("i")
+local nnoremap = M.nnoremap
+local vnoremap = M.vnoremap
+local inoremap = M.inoremap
 
 -- Exit terminal mode
 vim.api.nvim_set_keymap("t", "<Esc><leader>", [[<C-\><C-n>]], { noremap = true })
@@ -45,7 +33,7 @@ nnoremap("zj", "<C-w>j")
 nnoremap("zl", "<C-w>l")
 
 -- Copy and paste
--- This is set in window terminal and directly affect neovim
+-- This option is set in window terminal and directly affect neovim
 nnoremap("<C-c>", '"+y')
 vnoremap("<C-c>", '"+y')
 

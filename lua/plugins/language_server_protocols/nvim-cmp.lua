@@ -4,7 +4,8 @@ return {
     "onsails/lspkind-nvim", -- vscode-like pictograms.
     "L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
     "hrsh7th/cmp-buffer", -- nvim-cmp source for buffers (tab)
-    "tzachar/cmp-tabnine", -- support for tabnine 
+    "tzachar/cmp-tabnine", -- support for tabnine
+    "hrsh7th/cmp-cmdline", -- autocompletion for cmdline
   },
   config = function()
     local status, cmp = pcall(require, "cmp")
@@ -118,9 +119,16 @@ return {
 
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        name = "cmdline",
-      },
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        {
+          name = "cmdline",
+          option = {
+            ignore_cmds = { "Man", "!" },
+          },
+        },
+      }),
     })
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -134,5 +142,5 @@ return {
     vim.cmd([[
       highlight! default link CmpItemKind CmpItemMenuDefault
     ]])
-  end
+  end,
 }

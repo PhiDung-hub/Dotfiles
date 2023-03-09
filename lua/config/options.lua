@@ -1,10 +1,7 @@
 -- This file is automatically loaded by plugins.config
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 local opt = vim.opt
 
+-- General settings
 opt.autowrite = true -- Enable auto write
 opt.conceallevel = 3 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -29,38 +26,25 @@ opt.spelllang = { "en" }
 opt.splitbelow = true -- Put new windows below current
 opt.splitright = true -- Put new windows right of current
 opt.timeoutlen = 300
-opt.undofile = true
-opt.undolevels = 10000
+opt.undofile = true -- maintain undo history between sessions
+opt.undolevels = 5000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
+opt.hidden = true -- hide abandoned buffer
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"
   opt.shortmess:append({ C = true })
 end
 
--- WARNING: MAKE SURE TO PUT ALL CUSTOM HIGHLIGHT AFTER OTHERWISE TOKYONIGHT WILL OVERRIDE
-opt.termguicolors = true -- True color support
-vim.api.nvim_set_hl(0, "LineNR", { fg = "#DFBB5D" })
-vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", italic = true })
-
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
-
-opt.hidden = true -- hide abandoned buffer
 
 -- Encodings
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 vim.bo.fileencoding = "utf-8"
-
-vim.wo.relativenumber = false -- set relative number
-vim.wo.number = true -- set line number
--- vim.wo.colorcolumn = "150"
-
--- maintain undo history between sessions
-vim.cmd([[set undofile]])
 
 -- Editing settings
 opt.tabstop = 2 -- using space`s
@@ -85,5 +69,8 @@ vim.opt.hlsearch = true -- Enable search highlighting (Default = ON)
 -- Current line
 opt.cursorline = true -- Enable highlight cursor line
 opt.cursorlineopt = "number,line" -- Include number & whole line
-
-vim.cmd([[set report=5]]) -- report numbers of lines changed if greater than number
+-- WARNING: PUT ALL CUSTOM HIGHLIGHT AFTER config `tokyonight` OTHERWISE WILL BE OVERRIDED
+opt.termguicolors = true -- True color support
+vim.api.nvim_set_hl(0, "LineNR", { fg = "#DFBB5D" })
+vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", italic = true })
+vim.report = 5
