@@ -6,6 +6,7 @@ return {
     "hrsh7th/cmp-buffer", -- nvim-cmp source for buffers (tab)
     "tzachar/cmp-tabnine", -- support for tabnine
     "hrsh7th/cmp-cmdline", -- autocompletion for cmdline
+    "zbirenbaum/copilot-cmp", -- support for copilot
   },
   config = function()
     local status, cmp = pcall(require, "cmp")
@@ -27,6 +28,7 @@ return {
       nvim_lsp = "[Nvim_LSP]",
       nvim_lua = "[Lua]",
       cmp_tabnine = "[TabNine]",
+      copilot = "[Copilot]",
       path = "[Path]",
     }
 
@@ -74,13 +76,16 @@ return {
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "luasnip" },
-        { name = "cmp_tabnine" },
+        { name = "cmp_tabnine", group_index = 2 },
+        { name = "copilot",     group_index = 2 },
       }),
       formatting = {
         -- Details about function: https://github.com/onsails/lspkind.nvim/blob/master/lua/lspkind/init.lua#L167
         format = lspkind.cmp_format({
           with_text = true,
-          maxwidth = 60,
+          max_width = 60,
+          mode = "symbol",
+          symbol_map = { Copilot = "" },
           before = function(entry, vim_item)
             vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
             vim_item.menu = source_mapping[entry.source.name]

@@ -10,12 +10,10 @@ return {
       -- enables text annotations
       -- default: true
       mode = "symbol",
-
       -- default symbol map
       -- can be either 'default' (requires nerd-fonts font) or
       -- 'codicons' for codicon preset (requires vscode-codicons font)
       preset = "default",
-
       -- override preset symbols
       -- default: {}
       symbol_map = {
@@ -44,7 +42,11 @@ return {
         Event = "",
         Operator = "",
         TypeParameter = "",
+        Copilot = "",
       },
     })
-  end
+
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+  end,
 }
+
