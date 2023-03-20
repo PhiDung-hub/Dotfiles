@@ -43,7 +43,7 @@ return {
       },
       native_menu = false,
       mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
@@ -65,8 +65,8 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable( -1) then
-            luasnip.jump( -1)
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
           else
             fallback()
           end
@@ -77,15 +77,13 @@ return {
         { name = "buffer" },
         { name = "luasnip" },
         { name = "cmp_tabnine", group_index = 2 },
-        { name = "copilot",     group_index = 2 },
+        { name = "copilot", group_index = 2 },
       }),
       formatting = {
         -- Details about function: https://github.com/onsails/lspkind.nvim/blob/master/lua/lspkind/init.lua#L167
         format = lspkind.cmp_format({
           with_text = true,
           max_width = 60,
-          mode = "symbol",
-          symbol_map = { Copilot = "" },
           before = function(entry, vim_item)
             vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
             vim_item.menu = source_mapping[entry.source.name]

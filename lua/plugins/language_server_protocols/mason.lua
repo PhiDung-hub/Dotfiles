@@ -32,6 +32,7 @@ return {
       "bashls",
       "clangd",
       "rust_analyzer",
+      "taplo",
       "marksman",
       "prismals",
     }
@@ -41,5 +42,5 @@ return {
       ensure_installed = servers,
       automatic_installation = true,
     })
-  end
+  end,
 }

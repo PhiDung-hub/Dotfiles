@@ -3,7 +3,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
   },
-  config = function() 
+  config = function()
     local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
     if not lspconfig_ok then
       print("WARNING: lspconfig is unavailable")
@@ -119,6 +119,11 @@ return {
       capabilities = capabilities,
     })
 
+    lspconfig.taplo.setup({
+      on_detach = on_attach,
+      capabilities = capabilities,
+    })
+
     -- cpp
     local clangd_cap = capabilities
     clangd_cap.textDocument.semanticHighlighting = true
@@ -208,5 +213,5 @@ return {
         source = "if_many", -- Or "if_many"
       },
     })
-  end
+  end,
 }
