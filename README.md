@@ -1,3 +1,7 @@
 # Nvim-config
 
-Custom Neovim config for Rust & Typescript development (no debugger yet).
+My personal neovim config.
+
+## Includes
++ Custom LazyNvim set up
++ LSP configs, Tree browser, Telescope, Markdown preview, and editor utils (debugger, code outline, code highlights, etc..) 
