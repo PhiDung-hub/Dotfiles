@@ -40,14 +40,13 @@ return {
       --- You can override specific highlights to use other groups or a hex color
       --- function will be called with a Highlights and ColorScheme table
       ---@diagnostic disable-next-line
-      on_highlights = function(highlights, colors)
-      end,
+      on_highlights = function(highlights, colors) end,
     })
 
-    vim.cmd([[colorscheme tokyonight]])
+    -- vim.cmd.colorscheme("tokyonight")
 
     -- WARNING: MAKE SURE TO PUT ALL CUSTOM HIGHLIGHT AFTER OTHERWISE TOKYONIGHT WILL OVERRIDE
-    vim.api.nvim_set_hl(0, "LineNR", { fg = "#DFBB5D" })
-    vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", italic = true })
+    -- vim.api.nvim_set_hl(0, "LineNR", { fg = "#DFBB5D" })
+    -- vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", italic = true })
   end,
 }

@@ -1,4 +1,4 @@
-return { 
+return {
   "lewis6991/gitsigns.nvim", -- viewing git
   config = function()
     local status, gitsigns = pcall(require, "gitsigns")
@@ -98,5 +98,6 @@ return {
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
       end,
     })
-  end
+  end,
 }
+
