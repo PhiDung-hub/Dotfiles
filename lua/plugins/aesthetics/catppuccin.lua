@@ -17,12 +17,12 @@ return {
       show_end_of_buffer = false, -- show the '~' characters after the end of buffers
       term_colors = false,
       dim_inactive = {
-        enabled = false,
+        enabled = true,
         shade = "dark",
-        percentage = 0.15,
+        percentage = 0.25,
       },
       styles = {
-        comments = { "italic" },
+        comments = {},
         conditionals = {},
         loops = {},
         functions = {},
@@ -35,7 +35,13 @@ return {
         types = {},
         operators = {},
       },
-      color_overrides = {},
+      color_overrides = {
+        mocha = {
+          base = "#171717",
+          mantle = "#121215",
+          crust = "#0A0A1A",
+        },
+      },
       custom_highlights = {},
       integrations = {
         cmp = true,
@@ -47,10 +53,10 @@ return {
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       },
     })
-    vim.cmd.colorscheme("catppuccin")
+    -- vim.cmd.colorscheme("catppuccin")
 
     -- WARNING: MAKE SURE TO PUT ALL CUSTOM HIGHLIGHT AFTER OTHERWISE TOKYONIGHT WILL OVERRIDE
-    vim.api.nvim_set_hl(0, "LineNR", { fg = "#DFBB5D" })
-    vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", italic = true })
+    -- vim.api.nvim_set_hl(0, "LineNR", { fg = "#DFBB5D" })
+    -- vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", italic = true })
   end,
 }
