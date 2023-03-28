@@ -147,5 +147,6 @@ return {
     local set_highlight = vim.api.nvim_set_hl
     set_highlight(0, "SagaBorder", { fg = "#6DD2DD", bg = "#222222" })
     set_highlight(0, "SagaNormal", { bg = "#222222" })
-  end
+  end,
 }
+
