@@ -57,7 +57,8 @@ opt.expandtab = true -- Use space to insert a tab
 opt.wrap = false -- Wrap line when go beyond certain number of characters
 opt.backspace = { "start", "eol", "indent" } -- Allow backspacing over everything in insert mode
 opt.scrolloff = 10 -- scroll editor when there is x lines left
-opt.sidescrolloff = 8 -- Columns of context
+opt.sidescrolloff = 5
+opt.sidescroll = 5
 opt.completeopt = "menu,menuone,noselect,noinsert"
 
 -- Search
@@ -74,3 +75,11 @@ opt.termguicolors = true -- True color support
 vim.api.nvim_set_hl(0, "LineNR", { fg = "#DFBB5D" })
 vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", italic = true })
 vim.report = 5
+
+vim.filetype.add({
+  extension = {
+    mdx = "markdown.mdx",
+  },
+  filename = {},
+  pattern = {},
+})
