@@ -4,9 +4,11 @@ local M = require("helpers.keymap")
 local nnoremap = M.nnoremap
 local vnoremap = M.vnoremap
 local inoremap = M.inoremap
+-- local tnoremap = M.tnoremap
 
 -- Exit terminal mode
-vim.api.nvim_set_keymap("t", "<Esc><leader>", [[<C-\><C-n>]], { noremap = true })
+-- tnoremap("<Esc><leader>", "<C-\\><C-n>")
+vim.keymap.set("t", "<Esc><leader>", "<C-\\><C-n>", { nowait = true, noremap = true })
 
 -- Visual block mode
 nnoremap("q", "<C-v>")

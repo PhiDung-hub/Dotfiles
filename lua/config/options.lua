@@ -78,7 +78,7 @@ vim.report = 5
 
 vim.filetype.add({
   extension = {
-    mdx = "markdown.mdx",
+    mdx = "markdown",
   },
   filename = {},
   pattern = {},
