@@ -18,22 +18,6 @@ return {
     neotree.setup({
       enable_git_status = true,
       enable_diagnostics = true,
-      -- sources = {
-      --   "filesystem",
-      --   "buffers",
-      --   "git_status",
-      -- },
-      -- source_selector = {
-      --   winbar = true,
-      --   statusline = false, -- toggle to show selector on statusline
-      --   content_layout = "center",
-      --   tabs_layout = "equal",
-      --   tab_labels = {
-      --     filesystem = "  ",
-      --     buffers = "  ",
-      --     git_status = "  ",
-      --   },
-      -- },
       default_component_configs = {
         container = {
           enable_character_fade = true,

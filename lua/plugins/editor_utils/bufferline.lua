@@ -1,8 +1,10 @@
 return {
   "akinsho/nvim-bufferline.lua", -- buffer navigation on top
+  event = { "BufReadPost" },
   config = function()
     local status_ok, bufferline = pcall(require, "bufferline")
     if not status_ok then
+      print("WARNING: nvim-bufferline is unavailable")
       return
     end
 
@@ -15,16 +17,21 @@ return {
         indicator = {
           icon = "▎", -- this should be omitted if indicator style is not 'icon'
           style = "icon",
+          -- style = "underline",
         },
-        buffer_close_icon = "",
+        diagnostics_indicator = function(count, _, _, _)
+          if count > 9 then
+            return "9+"
+          end
+          return tostring(count)
+        end,
         modified_icon = "●",
-        close_icon = "",
         left_trunc_marker = "",
         right_trunc_marker = "",
-        max_name_length = 30,
-        max_prefix_length = 30, -- prefix used when a buffer is de-duplicated.
-        tab_size = 21,
-        diagnostics = false, -- | "nvim_lsp" | "coc",
+        max_name_length = 25,
+        max_prefix_length = 25, -- prefix used when a buffer is de-duplicated.
+        tab_size = 18,
+        diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
         diagnostics_update_in_insert = false,
         offsets = {
           {
@@ -42,9 +49,6 @@ return {
         always_show_bufferline = true,
       },
       highlights = {
-        separator_selected = {
-          fg = "#073642",
-        },
         buffer_selected = {
           fg = "#fdf6e3",
           bold = true,
@@ -60,7 +64,6 @@ return {
     nnoremap("<Tab>", "<Cmd>BufferLineCycleNext<CR>")
     nnoremap("<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>")
     nnoremap("<m-p>", "<Cmd>BufferLineTogglePin<CR>")
-    nnoremap("<m-b>", "<Cmd>BufferLinePick<CR>")
     nnoremap("<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>")
     nnoremap("<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>")
     nnoremap("<leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>")
@@ -73,4 +76,3 @@ return {
     nnoremap("<leader>0", "<Cmd>BufferLineGoToBuffer -1<CR>")
   end,
 }
-
