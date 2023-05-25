@@ -64,6 +64,12 @@ return {
     nnoremap("<Tab>", "<Cmd>BufferLineCycleNext<CR>")
     nnoremap("<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>")
     nnoremap("<m-p>", "<Cmd>BufferLineTogglePin<CR>")
+
+    nnoremap("<C-q>", "<Cmd>BufferLinePickClose<CR>")
+    nnoremap("bdl", "<Cmd>BufferLineCloseLeft<CR>")
+    nnoremap("bdr", "<Cmd>BufferLineCloseRight<CR>")
+
+    -- jump to buffer number
     nnoremap("<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>")
     nnoremap("<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>")
     nnoremap("<leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>")
