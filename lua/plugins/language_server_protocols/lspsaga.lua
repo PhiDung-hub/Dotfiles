@@ -74,7 +74,51 @@ return {
         incoming = " ",
         outgoing = " ",
         hover = " ",
-        kind = {},
+        kind = {
+          -- See: https://github.com/nvimdev/lspsaga.nvim#custom-kind
+          -- 1 -> 9
+          ["File"] = { " ", "Tag" },
+          ["Module"] = { " ", "Exception" },
+          ["Class"] = { "ﴯ ", "Include" },
+          ["Method"] = { " ", "Function" },
+          ["Property"] = { "ﰠ ", "@property" },
+          ["Field"] = { "ﰠ ", "@field" },
+          ["Constructor"] = { " ", "@constructor" },
+
+          -- 10 -> 14
+          ["Enum"] = { " ", "@number" },
+          ["Interface"] = { " ", "Type" },
+          ["Function"] = { " ", "Function" },
+          ["Variable"] = { " ", "@variable" },
+          ["Constant"] = { " ", "Constant" },
+
+          -- 15 -> 21
+          ["String"] = { "S ", "String" },
+          ["Number"] = { " ", "Number" },
+          ["Boolean"] = { "B ", "Boolean" },
+          ["Array"] = { "A ", "Type" },
+          ["Object"] = { " ", "Type" },
+          ["Key"] = { " ", "Constant" },
+
+          -- 22 -> 26
+          ["EnumMember"] = { " ", "Number" },
+          ["Struct"] = { "פּ ", "Type" },
+          ["Event"] = { " ", "Constant" },
+          ["Operator"] = { " ", "Operator" },
+          ["TypeParameter"] = { " ", "Type" },
+
+          -- ccls: 252 -> 255
+          ["TypeAlias"] = { " ", "Type" },
+          ["Parameter"] = { "Param ", "@parameter" },
+          ["StaticMethod"] = { "Static ", "Function" },
+          ["Macro"] = { " ", "Macro" },
+
+          -- 300 -> 304
+          ["Text"] = { " ", "String" },
+          ["Folder"] = { " ", "Title" },
+          ["Unit"] = { "塞", "Number" },
+          ["Value"] = { " ", "@variable" },
+        },
       },
     })
 
