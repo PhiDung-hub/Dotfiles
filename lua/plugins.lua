@@ -15,8 +15,8 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "plugins.editor_utils" },
     { import = "plugins.language_server_protocols" },
+    { import = "plugins.language_server_protocols.3rd_party_plugins" },
     { import = "plugins.gits" },
     { import = "plugins.aesthetics" },
-    { import = "plugins.third_party_plugins" },
   },
 })

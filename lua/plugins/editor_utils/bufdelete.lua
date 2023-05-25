@@ -7,5 +7,5 @@ return {
       return
     end
     vim.keymap.set("n", "<C-Q>", "<Cmd>Bdelete!<CR>", {})
-  end
+  end,
 }

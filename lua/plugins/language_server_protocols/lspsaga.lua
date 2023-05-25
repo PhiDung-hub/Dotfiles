@@ -1,5 +1,12 @@
 return {
   "glepnir/lspsaga.nvim", -- LSP UIs
+  event = "LspAttach",
+  branch = "main",
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons" },
+    --Please make sure you install markdown and markdown_inline parser
+    { "nvim-treesitter/nvim-treesitter" },
+  },
   config = function()
     local status, saga = pcall(require, "lspsaga")
     if not status then
@@ -13,10 +20,62 @@ return {
         lines_below = 20,
       },
       scroll_preview = {
-        scroll_down = "<C-d>",
-        scroll_up = "<C-u>",
+        scroll_down = "<C-f>",
+        scroll_up = "<C-b>",
       },
-      request_timeout = 3000,
+      request_timeout = 2000,
+      hover = {
+        max_width = 0.6,
+        open_link = "gx",
+        open_browser = "!chrome",
+      },
+      rename = {
+        quit = "<C-c>",
+        exec = "<CR>",
+        mark = "x",
+        confirm = "<CR>",
+        in_select = true,
+      },
+      outline = {
+        win_position = "right",
+        win_with = "",
+        win_width = 30,
+        preview_width = 0.5,
+        show_detail = true,
+        auto_preview = true,
+        auto_refresh = true,
+        auto_close = true,
+        auto_resize = false,
+        custom_sort = nil,
+        keys = {
+          expand_or_jump = "o",
+          quit = "q",
+        },
+      },
+      symbol_in_winbar = {
+        enable = true,
+        separator = " ",
+        ignore_patterns = {},
+        hide_keyword = true,
+        show_file = true,
+        folder_level = 2,
+        respect_root = false,
+        color_mode = true,
+      },
+      ui = {
+        -- This option only works in Neovim 0.9
+        title = true,
+        -- Border type can be single, double, rounded, solid, shadow.
+        border = "single",
+        winblend = 0,
+        expand = "",
+        collapse = "",
+        code_action = "💡",
+        incoming = " ",
+        outgoing = " ",
+        hover = " ",
+        kind = {},
+      },
     })
 
     local nnoremap = require("helpers.keymap").nnoremap
@@ -26,6 +85,7 @@ return {
     nnoremap("gd", "<cmd>Lspsaga lsp_finder<CR>")
     nnoremap("gp", "<cmd>Lspsaga peek_definition<CR>")
     nnoremap("gr", "<Cmd>Lspsaga rename<CR>")
+    nnoremap("gd", "<Cmd>Lspsaga goto_definition<CR>")
 
     -- Outline && call orders
     nnoremap("<leader>o", "<Cmd>Lspsaga outline<CR>")

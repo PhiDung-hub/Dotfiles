@@ -27,13 +27,6 @@ return {
         vim.api.nvim_buf_set_keymap(bufnr, "n", "2<leader>]", "<cmd>AerialNext 2<CR>", {})
         vim.api.nvim_buf_set_keymap(bufnr, "n", "3<leader>[", "<cmd>AerialPrev 3<CR>", {})
         vim.api.nvim_buf_set_keymap(bufnr, "n", "3<leader>]", "<cmd>AerialNext 3<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "4<leader>[", "<cmd>AerialPrev 4<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "4<leader>]", "<cmd>AerialNext 4<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "5<leader>[", "<cmd>AerialPrev 5<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "5<leader>]", "<cmd>AerialNext 5<CR>", {})
-        -- -- Jump up the tree with '[[' or ']]'
-        -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
-        -- vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
       end,
       -- Determines how the aerial window decides which buffer to display symbols for
       --   window - aerial window will display symbols for the buffer in the window from which it was opened
