@@ -27,7 +27,11 @@ return {
         diagnostics = false, -- | "nvim_lsp" | "coc",
         diagnostics_update_in_insert = false,
         offsets = {
-          { filetype = "NvimTree", text = "File Explorer", text_align = "center", padding = 1, separator = false },
+          {
+            filetype = "neo-tree",
+            text = "File Explorer",
+            text_align = "center",
+          },
         },
         show_buffer_icons = true,
         show_buffer_close_icons = false,
@@ -36,21 +40,8 @@ return {
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         enforce_regular_tabs = true,
         always_show_bufferline = true,
-        -- hover = {
-        --   enabled = true,
-        --   delay = 200,
-        --   reveal = {'close'}
-        -- },
       },
       highlights = {
-        -- separator = {
-        --   fg = '#073642',
-        --   bg = '#002b36',
-        -- },
-        -- background = {
-        --   fg = '#657b83',
-        --   bg = '#002b36'
-        -- },
         separator_selected = {
           fg = "#073642",
         },
@@ -80,5 +71,6 @@ return {
     nnoremap("<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>")
     nnoremap("<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>")
     nnoremap("<leader>0", "<Cmd>BufferLineGoToBuffer -1<CR>")
-  end
+  end,
 }
+

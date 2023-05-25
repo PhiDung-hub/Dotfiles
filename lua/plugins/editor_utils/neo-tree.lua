@@ -2,7 +2,9 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   keys = {
     { "<M-t>",   "<cmd>NeoTreeFocusToggle<cr>",       desc = "NeoTree Toggle" },
-    { "<C-M-G>", "<cmd>Neotree float git_status<cr>", desc = "NeoTree Open Git Status" },
+    { "<C-M-G>", "<cmd>Neotree float git_status<cr>", desc = "NeoTree Open Float Git Status" },
+    { "<C-M-B>", "<cmd>Neotree float buffers<cr>",    desc = "NeoTree Open Float  Active Buffers" },
+    { "<C-M-T>", "<cmd>Neotree float filesystem<cr>", desc = "NeoTree Open Float File System" },
   },
   config = function()
     local status, neotree = pcall(require, "neo-tree")
@@ -14,6 +16,24 @@ return {
     -- Config source: https://github.com/nvim-neo-tree/neo-tree.nvim#longer-example-for-packer
 
     neotree.setup({
+      enable_git_status = true,
+      enable_diagnostics = true,
+      -- sources = {
+      --   "filesystem",
+      --   "buffers",
+      --   "git_status",
+      -- },
+      -- source_selector = {
+      --   winbar = true,
+      --   statusline = false, -- toggle to show selector on statusline
+      --   content_layout = "center",
+      --   tabs_layout = "equal",
+      --   tab_labels = {
+      --     filesystem = "  ",
+      --     buffers = "  ",
+      --     git_status = "  ",
+      --   },
+      -- },
       default_component_configs = {
         container = {
           enable_character_fade = true,
@@ -50,21 +70,6 @@ return {
           use_git_status_colors = true,
           highlight = "NeoTreeFileName",
         },
-        git_status = {
-          symbols = {
-            -- Change type
-            added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = "✖", -- this can only be used in the git_status source
-            renamed = "", -- this can only be used in the git_status source
-            -- Status type
-            untracked = "",
-            ignored = "",
-            unstaged = "",
-            staged = "",
-            conflict = "",
-          },
-        },
       },
       window = {
         position = "left",
@@ -86,11 +91,7 @@ return {
           ["S"] = "open_split",
           ["s"] = "open_vsplit",
           ["t"] = "open_tabnew",
-          -- ["<cr>"] = "open_drop",
-          -- ["t"] = "open_tab_drop",
           ["C"] = "close_node",
-          -- ["z"] = "close_all_nodes",
-          --["Z"] = "expand_all_nodes",
           ["a"] = {
             "add",
             -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -147,7 +148,6 @@ return {
       },
       buffers = {
         follow_current_file = true, -- This will find and focus the file in the active buffer every
-        -- time the current file is changed while the tree is open.
         group_empty_dirs = true, -- when true, empty folders will be grouped together
         show_unloaded = true,
         window = {
