@@ -109,8 +109,8 @@ return {
 
           -- ccls: 252 -> 255
           ["TypeAlias"] = { " ", "Type" },
-          ["Parameter"] = { "Param ", "@parameter" },
-          ["StaticMethod"] = { "Static ", "Function" },
+          ["Parameter"] = { "ﰠ ", "@parameter" },
+          ["StaticMethod"] = { " ", "Function" },
           ["Macro"] = { " ", "Macro" },
 
           -- 300 -> 304
