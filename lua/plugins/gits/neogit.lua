@@ -10,6 +10,10 @@ return {
       return
     end
     -- See here: https://github.com/TimUntersberger/neogit
-    neogit.setup({})
+    neogit.setup({
+      integrations = {
+        diffview = true,
+      },
+    })
   end,
 }

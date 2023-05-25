@@ -83,3 +83,9 @@ vim.filetype.add({
   filename = {},
   pattern = {},
 })
+
+-- For UFO-nvim (folding)
+opt.foldcolumn = "1"
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true

@@ -7,7 +7,7 @@ return {
       return
     end
 
-    -- Example config: https://github.com/lewis6991/gitsigns.nvim
+    -- DEFAULT SETUP: https://github.com/lewis6991/gitsigns.nvim
     gitsigns.setup({})
   end,
 }

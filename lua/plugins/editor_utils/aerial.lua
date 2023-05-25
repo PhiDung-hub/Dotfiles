@@ -40,5 +40,5 @@ return {
       --   global - aerial window will display symbols for the current window
       attach_mode = "window",
     })
-  end
+  end,
 }

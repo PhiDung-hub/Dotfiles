@@ -3,6 +3,7 @@ return {
   config = function()
     local status, lspkind = pcall(require, "lspkind")
     if not status then
+      print("WARNING: lspkind is unavailable")
       return
     end
 
@@ -49,4 +50,3 @@ return {
     vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
   end,
 }
-

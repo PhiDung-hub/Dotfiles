@@ -1,5 +1,8 @@
 return {
   "jose-elias-alvarez/null-ls.nvim", -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
+  dependencies = {
+    "lewis6991/gitsigns.nvim", -- viewing git
+  },
   config = function()
     local status, null_ls = pcall(require, "null-ls")
     if not status then
@@ -16,16 +19,6 @@ return {
 
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-    -- ** UNCOMMENT THIS & on_attach() IN SET UP FOR FORMMATING ON SAVE **
-    -- local lsp_formatting = function(bufnr)
-    --   vim.lsp.buf.format({
-    --     filter = function(client)
-    --       return client.name == "null-ls"
-    --     end,
-    --     bufnr = bufnr,
-    --   })
-    -- end
-
     -- WARNING: Make sure to install these tools using Mason.
     null_ls.setup({
       debug = false,
@@ -41,42 +34,20 @@ return {
         formatting.prettier,
 
         -- lua
-        --[[ diagnostics.selene, -- take note of global 'vim': https://www.reddit.com/r/neovim/comments/wlkc7c/configuring_global_variablesvim_in_selene/?utm_source=share&utm_medium=web2x&context=3 ]]
         formatting.stylua,
 
+        -- rust
         formatting.rustfmt,
-
-        -- markdown
-        -- diagnostics.markdownlint.with({
-        --   line_length = 150,
-        --   ignore_code_blocks = true,
-        --   disabled_filetypes = {},
-        -- ),
-
-        -- shell
-        -- diagnostics.shellcheck,
 
         -- snippets & utils
         completion.luasnip,
       },
-      -- on_attach = function(client, bufnr)
-      --   if client.supports_method("textDocument/formatting") then
-      --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      --     vim.api.nvim_create_autocmd("BufWritePre", {
-      --       group = augroup,
-      --       buffer = bufnr,
-      --       callback = function()
-      --         lsp_formatting(bufnr)
-      --       end,
-      --     })
-      --   end
-      -- end
     })
 
     vim.api.nvim_create_user_command("DisableLspFormatting", function()
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
     end, { nargs = 0 })
-  end
+  end,
 }
 
 -- ** EXAMPLE CUSTOM DIAGNOSTIC MESSAGE **

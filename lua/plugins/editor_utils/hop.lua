@@ -36,5 +36,5 @@ return {
       hop.hint_lines_skip_whitespace({})
     end)
     map.noremap("<leader>g", "<cmd>:HopPattern<cr>")
-  end
+  end,
 }

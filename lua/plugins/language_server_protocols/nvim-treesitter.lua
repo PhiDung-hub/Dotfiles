@@ -66,4 +66,3 @@ return {
     parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
   end,
 }
-

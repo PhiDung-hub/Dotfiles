@@ -1,7 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   keys = {
-    { "<M-t>", "<cmd>NeoTreeFocusToggle<cr>", desc = "NeoTree Toggle" },
+    { "<M-t>",   "<cmd>NeoTreeFocusToggle<cr>",       desc = "NeoTree Toggle" },
     { "<C-M-G>", "<cmd>Neotree float git_status<cr>", desc = "NeoTree Open Git Status" },
   },
   config = function()

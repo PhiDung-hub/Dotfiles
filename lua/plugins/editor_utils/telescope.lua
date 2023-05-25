@@ -3,7 +3,6 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "nvim-telescope/telescope-file-browser.nvim", -- telescope helpers
-    "nvim-telescope/telescope-media-files.nvim", -- preview image
   },
   config = function()
     local status, telescope = pcall(require, "telescope")
@@ -65,12 +64,6 @@ return {
             },
           },
         },
-        media_files = {
-          -- filetypes whitelist: defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-          filetypes = {"png", "webp", "jpg", "jpeg"},
-          -- find command (defaults to `fd`)
-          find_cmd = "rg"
-        }
       },
     })
 
@@ -109,5 +102,5 @@ return {
         layout_config = { height = 40 },
       })
     end)
-  end
+  end,
 }
