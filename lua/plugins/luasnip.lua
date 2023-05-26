@@ -13,5 +13,5 @@ return {
 
     require("snippets.cpp")
     require("snippets.rust")
-  end
+  end,
 }

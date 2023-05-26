@@ -65,7 +65,7 @@ return {
     nnoremap("<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>")
     nnoremap("<m-p>", "<Cmd>BufferLineTogglePin<CR>")
 
-    nnoremap("<C-q>", "<Cmd>BufferLinePickClose<CR>")
+    nnoremap("db", "<Cmd>BufferLinePickClose<CR>")
     nnoremap("dlb", "<Cmd>BufferLineCloseLeft<CR>")
     nnoremap("drb", "<Cmd>BufferLineCloseRight<CR>")
 
