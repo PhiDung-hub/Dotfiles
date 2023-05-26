@@ -1,13 +1,20 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "p00f/nvim-ts-rainbow", -- rainbow bracket
+    "HiPhish/nvim-ts-rainbow2", -- rainbow bracket
     "JoosepAlviste/nvim-ts-context-commentstring", -- tsx/jsx comment helper, use with Comment.nvim
+    "windwp/nvim-ts-autotag", -- auto rename tags
   },
   config = function()
     local status, ts = pcall(require, "nvim-treesitter.configs")
     if not status then
       print("WARNING: nvim-treesitter is unavailable.")
+      return
+    end
+
+    local status2, rainbow = pcall(require, "ts-rainbow")
+    if not status2 then
+      print("WARNING: ts-rainbow is unavailable.")
       return
     end
 
@@ -48,8 +55,39 @@ return {
       -- nvim-ts-rainbow plugin: https://github.com/p00f/nvim-ts-rainbow
       rainbow = {
         enable = true,
-        extended_mode = true,
-        max_file_line = nil,
+        query = {
+          "rainbow-parens",
+          html = "rainbow-tags",
+          latex = "rainbow-blocks",
+          javascript = "rainbow-tags-react",
+          tsx = "rainbow-tags",
+        },
+        strategy = {
+          -- Use global strategy by default
+          rainbow.strategy["global"],
+          -- Use local for HTML
+          html = rainbow.strategy["local"],
+          -- Pick the strategy for LaTeX dynamically based on the buffer size
+          latex = function()
+            -- Disabled for very large files, global strategy for large files,
+            -- local strategy otherwise
+            if vim.fn.line("$") > 10000 then
+              return nil
+            elseif vim.fn.line("$") > 1000 then
+              return rainbow.strategy["global"]
+            end
+            return rainbow.strategy["local"]
+          end,
+        },
+        hlgroups = {
+          "TSRainbowRed",
+          "TSRainbowYellow",
+          "TSRainbowBlue",
+          "TSRainbowOrange",
+          "TSRainbowGreen",
+          "TSRainbowViolet",
+          "TSRainbowCyan",
+        },
         disable = {}, -- list of languages you want to disable the plugin for
       },
       -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim

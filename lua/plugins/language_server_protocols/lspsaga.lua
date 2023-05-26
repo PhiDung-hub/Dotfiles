@@ -93,10 +93,10 @@ return {
           ["Constant"] = { " ", "Constant" },
 
           -- 15 -> 21
-          ["String"] = { "S ", "String" },
-          ["Number"] = { " ", "Number" },
-          ["Boolean"] = { "B ", "Boolean" },
-          ["Array"] = { "A ", "Type" },
+          ["String"] = { " ", "String" },
+          ["Number"] = { " ", "Number" },
+          ["Boolean"] = { " ", "Boolean" },
+          ["Array"] = { " ", "Type" },
           ["Object"] = { " ", "Type" },
           ["Key"] = { " ", "Constant" },
 
