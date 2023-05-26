@@ -49,6 +49,7 @@ return {
         "html",
         "regex",
       },
+      -- nvim-ts-autotag plugin: https://github.com/windwp/nvim-ts-autotag
       autotag = {
         enable = true,
       },
@@ -60,7 +61,7 @@ return {
           html = "rainbow-tags",
           latex = "rainbow-blocks",
           javascript = "rainbow-tags-react",
-          tsx = "rainbow-tags",
+          tsx = "rainbow-tags-react",
         },
         strategy = {
           -- Use global strategy by default
