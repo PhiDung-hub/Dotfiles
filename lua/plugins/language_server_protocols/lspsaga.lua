@@ -15,20 +15,6 @@ return {
 
     -- Setup: https://github.com/glepnir/lspsaga.nvim/blob/main/lua/lspsaga/init.lua
     saga.setup({
-      preview = {
-        lines_above = 0,
-        lines_below = 20,
-      },
-      scroll_preview = {
-        scroll_down = "<C-f>",
-        scroll_up = "<C-b>",
-      },
-      request_timeout = 2000,
-      hover = {
-        max_width = 0.6,
-        open_link = "gx",
-        open_browser = "!chrome",
-      },
       rename = {
         quit = "<C-c>",
         exec = "<CR>",
@@ -51,16 +37,6 @@ return {
           expand_or_jump = "o",
           quit = "q",
         },
-      },
-      symbol_in_winbar = {
-        enable = true,
-        separator = " ",
-        ignore_patterns = {},
-        hide_keyword = true,
-        show_file = true,
-        folder_level = 2,
-        respect_root = false,
-        color_mode = true,
       },
       ui = {
         -- This option only works in Neovim 0.9
