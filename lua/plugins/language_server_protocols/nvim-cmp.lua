@@ -77,7 +77,7 @@ return {
         { name = "buffer" },
         { name = "luasnip" },
         { name = "cmp_tabnine", group_index = 1 },
-        { name = "copilot",     group_index = 2 },
+        { name = "copilot",     group_index = 0 },
       }),
       formatting = {
         -- Details about function: https://github.com/onsails/lspkind.nvim/blob/master/lua/lspkind/init.lua#L167

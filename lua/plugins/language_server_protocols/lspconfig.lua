@@ -18,19 +18,12 @@ return {
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
     local on_attach = function(_, bufnr)
-      -- Enable completion triggered by <c-x><c-o>
-      vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
       -- Mappings.
       local opts = { noremap = true, silent = true, buffer = bufnr }
 
       vim.keymap.set("n", "<leader>f", function()
         vim.lsp.buf.format({ async = true })
       end, opts)
-
-      -- See `:help vim.lsp.*` for documentation on any of the below functions
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
     end
 
     local protocol = require("vim.lsp.protocol")
@@ -200,8 +193,7 @@ return {
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       underline = true,
-      update_in_insert = true,
-      virtual_text = { spacing = 4, prefix = "●" },
+      virtual_text = { spacing = 4, prefix = "" },
       severity_sort = true,
     })
 
@@ -213,10 +205,6 @@ return {
     end
 
     vim.diagnostic.config({
-      virtual_text = {
-        prefix = "●",
-      },
-      update_in_insert = true,
       float = {
         source = "if_many", -- Or "if_many"
       },

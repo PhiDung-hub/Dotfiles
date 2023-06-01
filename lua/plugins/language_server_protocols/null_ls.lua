@@ -28,7 +28,7 @@ return {
         -- diagnostics.pylint,
 
         -- JS, JSX, TSX
-        diagnostics.eslint_d.with({
+        diagnostics.eslint.with({
           diagnostics_format = "[eslint] #{m}\n(#{c})",
         }),
         formatting.prettier,
