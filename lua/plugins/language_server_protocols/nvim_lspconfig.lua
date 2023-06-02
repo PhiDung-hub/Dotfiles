@@ -115,9 +115,17 @@ return {
     })
 
     -- rustfmt for formatting: https://rust-lang.github.io/rustfmt/?version=v1.5.1&search
+    -- rust_analyzer config: https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
     lspconfig.rust_analyzer.setup({
       on_attach = on_attach,
       capabilities = capabilities,
+      settings = {
+        ["rust-analyzer"] = {
+          check = {
+            command = "clippy",
+          },
+        },
+      },
     })
 
     lspconfig.taplo.setup({
