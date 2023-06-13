@@ -1,5 +1,5 @@
 return {
-  "neovim/nvim-lspconfig", -- official LSP.
+  "neovim/nvim-lspconfig",  -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
   },
@@ -26,35 +26,6 @@ return {
       end, opts)
     end
 
-    local protocol = require("vim.lsp.protocol")
-    protocol.CompletionItemKind = {
-      "", -- Text
-      "", -- Method
-      "", -- Function
-      "", -- Constructor
-      "", -- Field
-      "", -- Variable
-      "", -- Class
-      "ﰮ", -- Interface
-      "", -- Module
-      "", -- Property
-      "", -- Unit
-      "", -- Value
-      "", -- Enum
-      "", -- Keyword
-      "﬌", -- Snippet
-      "", -- Color
-      "", -- File
-      "", -- Reference
-      "", -- Folder
-      "", -- EnumMember
-      "", -- Constant
-      "", -- Struct
-      "", -- Event
-      "ﬦ", -- Operator
-      "", -- TypeParameter
-    }
-
     -- Set up completion using nvim_cmp with LSP source
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -65,7 +36,7 @@ return {
       capabilities = capabilities,
     })
 
-    -- javascript & react & html & css
+    -- jsx/tsx/svelte
     lspconfig.tsserver.setup({
       on_attach = on_attach,
       filetypes = {
@@ -79,22 +50,12 @@ return {
       cmd = { "typescript-language-server", "--stdio" },
       capabilities = capabilities,
     })
-    lspconfig.html.setup({
+    lspconfig.svelte.setup({
       on_attach = on_attach,
       capabilities = capabilities,
-      filetypes = { "html", "htmldjango" },
     })
-    lspconfig.cssls.setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = {
-        css = {
-          lint = {
-            unknownAtRules = "ignore",
-          },
-        },
-      },
-    })
+
+    -- html & css & Tailwindcss
     lspconfig.emmet_ls.setup({
       on_attach = on_attach,
       capabilities = capabilities,
@@ -114,7 +75,8 @@ return {
       capabilities = capabilities,
     })
 
-    -- rustfmt for formatting: https://rust-lang.github.io/rustfmt/?version=v1.5.1&search
+    -- RUST
+    -- rustfmt formatting: https://rust-lang.github.io/rustfmt/?version=v1.5.1&search
     -- rust_analyzer config: https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
     lspconfig.rust_analyzer.setup({
       on_attach = on_attach,
@@ -128,8 +90,15 @@ return {
       },
     })
 
+    -- TOML
     lspconfig.taplo.setup({
-      on_detach = on_attach,
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
+    -- JSON
+    lspconfig.jsonls.setup({
+      on_attach = on_attach,
       capabilities = capabilities,
     })
 
@@ -159,12 +128,6 @@ return {
 
     -- Solidity
     lspconfig.solidity.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- prisma
-    lspconfig.prismals.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })

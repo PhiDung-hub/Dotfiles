@@ -1,10 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "HiPhish/nvim-ts-rainbow2", -- rainbow bracket: https://github.com/HiPhish/nvim-ts-rainbow2
+    "HiPhish/nvim-ts-rainbow2",                    -- rainbow bracket: https://github.com/HiPhish/nvim-ts-rainbow2
     "JoosepAlviste/nvim-ts-context-commentstring", -- tsx/jsx comment helper, use with Comment.nvim
-    "windwp/nvim-ts-autotag", -- auto rename tags
-    "numToStr/Comment.nvim", -- Comment string, enhanced default `gc` behavior.
+    "windwp/nvim-ts-autotag",                      -- auto rename tags
+    "numToStr/Comment.nvim",                       -- Comment string, enhanced default `gc` behavior.
   },
   config = function()
     local ts_installed, ts = pcall(require, "nvim-treesitter.configs")
@@ -53,23 +53,24 @@ return {
       },
       auto_install = true,
       ensure_installed = {
-        "markdown",
-        "markdown_inline",
-        "javascript",
-        "typescript",
-        "tsx",
-        "gitignore",
         "lua",
         "cpp",
         "rust",
-        "toml",
         "solidity",
         "python",
-        "yaml",
+        "javascript",
+        "typescript",
+        "tsx",
+        "svelte",
         "json",
         "html",
         "css",
         "scss",
+        "markdown",
+        "markdown_inline",
+        "yaml",
+        "toml",
+        "gitignore",
       },
       autotag = {
         enable = true,
