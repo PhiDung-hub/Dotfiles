@@ -1,10 +1,10 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   keys = {
-    { "<M-t>",   "<cmd>NeoTreeFocusToggle<cr>",       desc = "NeoTree Toggle" },
-    { "<C-M-G>", "<cmd>Neotree float git_status<cr>", desc = "NeoTree Open Float Git Status" },
-    { "<C-M-B>", "<cmd>Neotree float buffers<cr>",    desc = "NeoTree Open Float  Active Buffers" },
-    { "<C-M-T>", "<cmd>Neotree float filesystem<cr>", desc = "NeoTree Open Float File System" },
+    { "<M-t>",   "<cmd>Neotree focus toggle<cr>",            desc = "NeoTree Toggle" },
+    { "<C-M-G>", "<cmd>Neotree float git_status toggle<cr>", desc = "NeoTree Open Float Git Status" },
+    { "<C-M-B>", "<cmd>Neotree float buffers toggle<cr>",    desc = "NeoTree Open Float  Active Buffers" },
+    { "<C-M-T>", "<cmd>Neotree float filesystem toggle<cr>", desc = "NeoTree Open Float File System" },
   },
   config = function()
     local status, neotree = pcall(require, "neo-tree")
@@ -106,14 +106,14 @@ return {
           hide_dotfiles = true,
           hide_gitignored = true,
           hide_hidden = true, -- only works on Windows for hidden files/directories
-          always_show = { -- remains visible even if other settings would normally hide it
+          always_show = {     -- remains visible even if other settings would normally hide it
             ".gitignore",
           },
         },
-        follow_current_file = true, -- This will find and focus the file in the active buffer every
-        group_empty_dirs = false, -- when true, empty folders will be grouped together
-        hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-        use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+        follow_current_file = { enabled = true }, -- This will find and focus the file in the active buffer every
+        group_empty_dirs = false,                 -- when true, empty folders will be grouped together
+        hijack_netrw_behavior = "open_default",   -- netrw disabled, opening a directory opens neo-tree
+        use_libuv_file_watcher = false,           -- This will use the OS level file watchers to detect changes
         window = {
           mappings = {
             ["<bs>"] = "navigate_up",
@@ -131,8 +131,8 @@ return {
         },
       },
       buffers = {
-        follow_current_file = true, -- This will find and focus the file in the active buffer every
-        group_empty_dirs = true, -- when true, empty folders will be grouped together
+        follow_current_file = { enabled = true }, -- This will find and focus the file in the active buffer every
+        group_empty_dirs = true,                  -- when true, empty folders will be grouped together
         show_unloaded = true,
         window = {
           mappings = {

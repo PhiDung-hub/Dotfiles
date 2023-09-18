@@ -36,7 +36,7 @@ return {
       capabilities = capabilities,
     })
 
-    -- jsx/tsx/svelte
+    -- jsx/tsx/svelte/vue
     lspconfig.tsserver.setup({
       on_attach = on_attach,
       filetypes = {
@@ -47,11 +47,19 @@ return {
         "typescriptreact",
         "typescript.tsx",
       },
-      cmd = { "typescript-language-server", "--stdio" },
       capabilities = capabilities,
     })
+
     lspconfig.svelte.setup({
       on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
+    lspconfig.vue.setup({
+      on_attach = on_attach,
+      filetypes = {
+        "vue",
+      },
       capabilities = capabilities,
     })
 

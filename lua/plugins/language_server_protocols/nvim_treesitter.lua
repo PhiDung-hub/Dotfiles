@@ -1,10 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "HiPhish/nvim-ts-rainbow2",                    -- rainbow bracket: https://github.com/HiPhish/nvim-ts-rainbow2
+    "HiPhish/rainbow-delimiters.nvim", -- rainbow bracket: https://github.com/HiPhish/rainbow-delimeters.nvim
     "JoosepAlviste/nvim-ts-context-commentstring", -- tsx/jsx comment helper, use with Comment.nvim
-    "windwp/nvim-ts-autotag",                      -- auto rename tags
-    "numToStr/Comment.nvim",                       -- Comment string, enhanced default `gc` behavior.
+    "windwp/nvim-ts-autotag", -- auto rename tags
+    "numToStr/Comment.nvim", -- Comment string, enhanced default `gc` behavior.
   },
   config = function()
     local ts_installed, ts = pcall(require, "nvim-treesitter.configs")
@@ -13,15 +13,15 @@ return {
       return
     end
 
-    -- nvim-ts-rainbow plugin: https://github.com/HiPhish/nvim-ts-rainbow2
-    local rainbow_installed, rainbow = pcall(require, "ts-rainbow")
+    -- nvim-ts-rainbow plugin: https://github.com/HiPhish/rainbow-delimiters.nvim
+    local rainbow_installed, delimiters = pcall(require, "rainbow-delimiters")
     if not rainbow_installed then
       print("WARNING: ts-rainbow is unavailable.")
       return
     end
 
     -- nvim-ts-context-commentstring plugin: https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
-    local ts_context_installed, _ = pcall(require, "ts-rainbow")
+    local ts_context_installed, _ = pcall(require, "ts_context_commentstring")
     if not ts_context_installed then
       print("WARNING: ts-rainbow is unavailable.")
       return
@@ -76,26 +76,22 @@ return {
         enable = true,
       },
       rainbow = {
-        enable = true,
-        query = {
-          "rainbow-parens",
-          html = "rainbow-tags",
-          latex = "rainbow-blocks",
-        },
         strategy = {
-          -- Use global strategy by default
-          rainbow.strategy["global"],
-          -- Use local for HTML
-          html = rainbow.strategy["local"],
-          -- Pick the strategy for LaTeX dynamically based on the buffer size
-          latex = function()
-            if vim.fn.line("$") > 10000 then
-              return nil
-            elseif vim.fn.line("$") > 1000 then
-              return rainbow.strategy["global"]
-            end
-            return rainbow.strategy["local"]
-          end,
+          [""] = delimiters.strategy["global"],
+          vim = delimiters.strategy["local"],
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+          lua = "rainbow-blocks",
+        },
+        highlight = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
         },
       },
       context_commentstring = {

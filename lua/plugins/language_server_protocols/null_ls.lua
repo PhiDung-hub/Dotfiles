@@ -31,7 +31,7 @@ return {
         diagnostics.eslint.with({
           diagnostics_format = "[eslint] #{m}\n(#{c})",
         }),
-        formatting.prettier,
+        formatting.eslint,
 
         -- lua
         formatting.stylua,

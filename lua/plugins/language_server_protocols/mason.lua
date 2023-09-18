@@ -27,6 +27,7 @@ return {
       "solc",
       "tsserver",
       "tailwindcss",
+      "svelte",
       "pyright",
       "yamlls",
       "bashls",
@@ -35,6 +36,7 @@ return {
       "taplo",
       "marksman",
       "prismals",
+      "lua_ls",
     }
 
     mason.setup({})

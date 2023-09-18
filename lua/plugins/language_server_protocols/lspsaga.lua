@@ -1,5 +1,5 @@
 return {
-  "glepnir/lspsaga.nvim", -- LSP UIs
+  "nvimdev/lspsaga.nvim", -- LSP UIs
   event = "LspAttach",
   branch = "main",
   dependencies = {
