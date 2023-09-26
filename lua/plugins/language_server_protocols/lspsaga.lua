@@ -112,18 +112,6 @@ return {
     nnoremap("<leader>ci", "<Cmd>Lspsaga incoming_calls<CR>")
     nnoremap("<leader>co", "<Cmd>Lspsaga outgoing_calls<CR>")
 
-    -- diagnostics
-    nnoremap("<leader>sl", "<Cmd>Lspsaga show_line_diagnostics<CR>")
-    nnoremap("<leader>sc", "<Cmd>Lspsaga show_cursor_diagnostics<CR>")
-    nnoremap("<leader>sb", "<Cmd>Lspsaga show_buf_diagnostics<CR>")
-    nnoremap("<leader>[e", "<Cmd>Lspsaga diagnostic_jump_prev<CR>")
-    nnoremap("<leader>]e", "<Cmd>Lspsaga diagnostic_jump_next<CR>")
-
     vim.keymap.set({ "n", "t" }, "<M-d>", "<cmd>Lspsaga term_toggle<CR>")
-
-    -- NOTE: HIGHLIGHT GROUP: https://github.com/glepnir/lspsaga.nvim/blob/main/lua/lspsaga/highlight.lua
-    local set_highlight = vim.api.nvim_set_hl
-    set_highlight(0, "SagaBorder", { fg = "#6DD2DD", bg = "#222222" })
-    set_highlight(0, "SagaNormal", { bg = "#222222" })
   end,
 }

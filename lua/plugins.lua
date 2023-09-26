@@ -23,6 +23,7 @@ require("lazy").setup({
     { import = "plugins.language_server_protocols.3rd_party_plugins" },
     { import = "plugins.gits" },
     { import = "plugins.aesthetics" },
+    { import = "plugins.aesthetics.color_schemes" },
     { import = "plugins.debuggers" },
   },
 })

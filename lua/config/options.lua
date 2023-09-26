@@ -60,18 +60,17 @@ opt.scrolloff = 10                           -- scroll editor when there is x li
 opt.sidescrolloff = 5
 opt.sidescroll = 5
 opt.completeopt = "menu,menuone,noselect,noinsert"
+opt.termguicolors = true -- True color support
 
 -- Search
-vim.opt.ignorecase = true -- case-insensitive search
-vim.opt.smartcase = true  -- switch between case-sensitive whenever uppercase letter present
-vim.opt.incsearch = true  -- incremental search (Default = ON)
-vim.opt.hlsearch = true   -- Enable search highlighting (Default = ON)
+opt.ignorecase = true -- case-insensitive search
+opt.smartcase = true  -- switch between case-sensitive whenever uppercase letter present
+opt.incsearch = true  -- incremental search (Default = ON)
+opt.hlsearch = true   -- Enable search highlighting (Default = ON)
 
 -- Current line
 opt.cursorline = true             -- Enable highlight cursor line
 opt.cursorlineopt = "number,line" -- Include number & whole line
--- WARNING: PUT ALL CUSTOM HIGHLIGHT AFTER config `tokyonight` OTHERWISE WILL BE OVERRIDED
-opt.termguicolors = true          -- True color support
 vim.report = 5
 
 vim.filetype.add({
@@ -90,14 +89,14 @@ opt.foldenable = true
 
 -- Define the clipboard settings
 vim.g.clipboard = {
-  name = 'WslClipboard',
+  name = "WslClipboard",
   copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
+    ["+"] = "clip.exe",
+    ["*"] = "clip.exe",
   },
   paste = {
-    ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
   },
   cache_enabled = 0,
 }

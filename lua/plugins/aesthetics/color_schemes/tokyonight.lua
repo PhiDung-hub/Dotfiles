@@ -1,16 +1,17 @@
 return {
   "folke/tokyonight.nvim", -- color theme
+  enabled = false,
   config = function()
     local status, tokyonight = pcall(require, "tokyonight")
     if not status then
-      print("WARNING: tokyonight is unavailable.")
+      print("WARNING: tokyonight color scheme is unavailable.")
       return
     end
 
     tokyonight.setup({
-      style = "night",        -- The theme comes in 4 styles, `storm`, `moon`, `night` and `day`
+      style = "night", -- The theme comes in 4 styles, `storm`, `moon`, `night` and `day`
       light_style = "day",
-      transparent = false,    -- Enable this to disable setting the background color
+      transparent = false, -- Enable this to disable setting the background color
       terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
       styles = {
         -- Style to be applied to different syntax groups
@@ -20,8 +21,8 @@ return {
         functions = {},
         variables = {},
         -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "dark",               -- style for sidebars, see below
-        floats = "night",                -- style for floating windows
+        sidebars = "dark", -- style for sidebars, see below
+        floats = "night", -- style for floating windows
       },
       sidebars = { "terminal", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
       -- You can override specific color groups to use other groups or a hex color
@@ -44,6 +45,6 @@ return {
 
     -- WARNING: MAKE SURE TO PUT ALL CUSTOM HIGHLIGHT AFTER OTHERWISE TOKYONIGHT WILL OVERRIDE
     vim.api.nvim_set_hl(0, "LineNR", { fg = "#5E8B9F" })
-    vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "cyan", bold = true })
+    vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "#F4C430", bold = true })
   end,
 }

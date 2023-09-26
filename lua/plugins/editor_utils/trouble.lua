@@ -1,5 +1,6 @@
 return {
   "folke/trouble.nvim", -- diagnostics
+  enabled = true,
   config = function()
     local status_ok, trouble = pcall(require, "trouble")
     if not status_ok then
