@@ -59,10 +59,10 @@ return {
     vim.api.nvim_set_hl(0, "SagaBorder", { fg = bg_darker, bg = bg_darker })
     vim.api.nvim_set_hl(0, "SagaNormal", { bg = bg_darker })
 
-    vim.api.nvim_set_hl(0, "MsgArea", { fg = bg_default })
-    vim.api.nvim_set_hl(0, "NormalNC", { fg = bg_default })
-    vim.api.nvim_set_hl(0, "TabLineSel", { fg = bg_default })
-    vim.api.nvim_set_hl(0, "Winbar", { fg = bg_default })
-    vim.api.nvim_set_hl(0, "WinbarNC", { fg = bg_default })
+    -- vim.api.nvim_set_hl(0, "MsgArea", { fg = bg_default })
+    -- vim.api.nvim_set_hl(0, "NormalNC", { fg = bg_default })
+    -- vim.api.nvim_set_hl(0, "TabLineSel", { fg = bg_default })
+    -- vim.api.nvim_set_hl(0, "Winbar", { fg = bg_default })
+    -- vim.api.nvim_set_hl(0, "WinbarNC", { fg = bg_default })
   end,
 }
