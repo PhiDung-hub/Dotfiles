@@ -3,6 +3,7 @@ return {
   config = function()
     local status, blankline = pcall(require, "indent_blankline")
     if not status then
+      print("indent blankline not found")
       return
     end
 
@@ -17,5 +18,5 @@ return {
       show_current_context = true,
       -- show_current_context_start = true,
     })
-  end
+  end,
 }
