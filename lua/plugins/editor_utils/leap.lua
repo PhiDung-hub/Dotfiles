@@ -1,5 +1,6 @@
 return {
   "ggandor/leap.nvim", -- vim motion
+  enable = false,
   dependencies = {
     "tpope/vim-repeat", -- modern '.' repeat command
   },

@@ -11,32 +11,16 @@ return {
       return
     end
 
+    local s, context = pcall(require, "ts_context_commentstring")
+    if not s then
+      print("ts_context_commentstring not found")
+      return
+    end
+    -- NOTE: for nvim-treesitter v1.0
+    -- context.setup({})
+
     comment.setup({
-      -- Function to call before (un)comment
-      -- Support for Comment.nvim: https://github.com/JoosepAlviste/nvim-ts-context-commentstring/blob/main/lua/ts_context_commentstring/integrations/comment_nvim.lua#L20
-      ---@return string|nil
-      pre_hook = function(ctx)
-        local U = require("Comment.utils")
-
-        -- Determine whether to use linewise or blockwise commentstring
-        local type = ctx.ctype == U.ctype.linewise and "__default" or "__multiline"
-
-        -- Determine the location where to calculate commentstring from
-        local location = nil
-        if ctx.ctype == U.ctype.blockwise then
-          location = {
-            ctx.range.srow - 1,
-            ctx.range.scol,
-          }
-        elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-          location = require("ts_context_commentstring.utils").get_visual_start_location()
-        end
-
-        return require("ts_context_commentstring.internal").calculate_commentstring({
-          key = type,
-          location = location,
-        })
-      end,
+      pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
     })
   end,
 }

@@ -1,7 +1,8 @@
 return {
   "lukas-reineke/indent-blankline.nvim", -- identation helpers
+  main = "ibl",
   config = function()
-    local status, blankline = pcall(require, "indent_blankline")
+    local status, ibl = pcall(require, "ibl")
     if not status then
       print("indent blankline not found")
       return
@@ -12,11 +13,16 @@ return {
     -- vim.opt.listchars:append("eol:↴")
 
     -- Config: https://github.com/lukas-reineke/indent-blankline.nvim
-    blankline.setup({
-      -- for example, context is off by default, use this to turn it on
-      space_char_blankline = " ",
+    ibl.setup({
+      indent = {
+        char = "▏",
+        tab_char = nil,
+        highlight = "IblIndent",
+        smart_indent_cap = true,
+        priority = 1,
+      },
       show_current_context = true,
-      -- show_current_context_start = true,
+      show_current_context_start = false,
     })
   end,
 }
