@@ -1,5 +1,5 @@
 return {
-  "neovim/nvim-lspconfig",  -- https://github.com/neovim/nvim-lspconfig
+  "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
   },
@@ -136,6 +136,12 @@ return {
 
     -- Solidity
     lspconfig.solidity.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    -- SQL
+    lspconfig.sqlls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })

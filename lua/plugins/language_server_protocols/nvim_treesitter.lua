@@ -63,6 +63,7 @@ return {
         "javascript",
         "typescript",
         "tsx",
+        "sql",
         "svelte",
         "json",
         "html",
@@ -89,13 +90,13 @@ return {
           lua = "rainbow-blocks",
         },
         highlight = {
-          "RainbowDelimiterRed",
           "RainbowDelimiterYellow",
           "RainbowDelimiterBlue",
           "RainbowDelimiterOrange",
           "RainbowDelimiterGreen",
           "RainbowDelimiterViolet",
           "RainbowDelimiterCyan",
+          "RainbowDelimiterRed",
         },
       },
 

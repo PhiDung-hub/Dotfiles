@@ -1,5 +1,5 @@
 return {
-  "williamboman/mason.nvim", -- LSP manager.
+  "williamboman/mason.nvim",             -- LSP manager.
   dependencies = {
     "williamboman/mason-lspconfig.nvim", -- mason config helpers.
   },
@@ -37,6 +37,7 @@ return {
       "marksman",
       "prismals",
       "lua_ls",
+      "sqlls",
     }
 
     mason.setup({})
