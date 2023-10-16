@@ -17,12 +17,9 @@ return {
       indent = {
         char = "▏",
         tab_char = nil,
-        highlight = "IblIndent",
         smart_indent_cap = true,
         priority = 1,
       },
-      show_current_context = true,
-      show_current_context_start = false,
     })
   end,
 }

@@ -1,5 +1,5 @@
 return {
-  "kevinhwang91/nvim-ufo", -- auto tag
+  "kevinhwang91/nvim-ufo", -- code folding
   dependencies = { "kevinhwang91/promise-async" },
   keys = {
     { "zo", desc = "Open fold under cursor" },

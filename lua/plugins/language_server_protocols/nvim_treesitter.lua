@@ -1,10 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "HiPhish/rainbow-delimiters.nvim", -- rainbow bracket: https://github.com/HiPhish/rainbow-delimeters.nvim
+    "HiPhish/rainbow-delimiters.nvim",             -- rainbow bracket: https://github.com/HiPhish/rainbow-delimeters.nvim
     "JoosepAlviste/nvim-ts-context-commentstring", -- tsx/jsx comment helper, use with Comment.nvim
-    "windwp/nvim-ts-autotag", -- auto rename tags
-    "numToStr/Comment.nvim", -- Comment string, enhanced default `gc` behavior.
+    "windwp/nvim-ts-autotag",                      -- auto rename tags
+    "numToStr/Comment.nvim",                       -- Comment string, enhanced default `gc` behavior.
   },
   config = function()
     local ts_installed, ts = pcall(require, "nvim-treesitter.configs")
@@ -30,7 +30,7 @@ return {
     -- nvim-ts-context-commentstring plugin: https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
     local ts_context_installed, _ = pcall(require, "ts_context_commentstring")
     if not ts_context_installed then
-      print("WARNING: ts-rainbow is unavailable.")
+      print("WARNING: ts-context-commentstring is unavailable.")
       return
     end
 

@@ -1,5 +1,5 @@
 return {
-  "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
+  "neovim/nvim-lspconfig",  -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
   },
@@ -142,6 +142,16 @@ return {
 
     -- SQL
     lspconfig.sqlls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    lspconfig.sql_formatter.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    lspconfig.prismals.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
