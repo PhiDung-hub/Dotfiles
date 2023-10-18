@@ -88,7 +88,7 @@ return {
     -- rust_analyzer config: https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
     lspconfig.rust_analyzer.setup({
       on_attach = on_attach,
-      capabilities = capabilities,
+      capabiligies = capabilities,
       settings = {
         ["rust-analyzer"] = {
           check = {
@@ -135,18 +135,13 @@ return {
     })
 
     -- Solidity
-    lspconfig.solidity.setup({
+    lspconfig.solidity_ls_nomicfoundation.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- SQL
     lspconfig.sqlls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig.sql_formatter.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })

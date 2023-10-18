@@ -23,7 +23,6 @@ return {
       "emmet_ls",
       "html",
       "jsonls",
-      "solidity",
       "solc",
       "tsserver",
       "tailwindcss",

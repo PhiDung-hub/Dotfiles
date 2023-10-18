@@ -1,6 +1,7 @@
 -- https://github.com/L3MON4D3/LuaSnip#config
 return {
   "L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
+  tag = "v2.*",
   denpendencies = {
     "rafamadriz/friendly-snippets", -- snippets collection
   },

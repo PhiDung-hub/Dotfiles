@@ -20,13 +20,14 @@ return {
       direction = "float",
       close_on_exit = true,
       shell = vim.o.shell,
+      highlights = {
+        NormalFloat = {
+          link = 'NormalFloat'
+        },
+      },
       float_opts = {
         border = "none",
         winblend = 0,
-        highlights = {
-          border = "Normal",
-          background = "Normal",
-        },
       },
     })
   end,
