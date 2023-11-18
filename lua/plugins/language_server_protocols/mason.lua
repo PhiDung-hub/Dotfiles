@@ -1,5 +1,5 @@
 return {
-  "williamboman/mason.nvim",             -- LSP manager.
+  "williamboman/mason.nvim", -- LSP manager.
   dependencies = {
     "williamboman/mason-lspconfig.nvim", -- mason config helpers.
   },
@@ -37,7 +37,19 @@ return {
       "prismals",
       "lua_ls",
       "sqlls",
+      "efm",
     }
+
+    -- Installing solhint
+    local registry = require("mason-registry")
+    for _, pkg_name in ipairs({ "solhint" }) do -- add others here
+      local ok, pkg = pcall(registry.get_package, pkg_name)
+      if ok then
+        if not pkg:is_installed() then
+          pkg:install()
+        end
+      end
+    end
 
     mason.setup({})
     mason_lspconfig.setup({

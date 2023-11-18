@@ -24,8 +24,7 @@ inoremap("<C-Up>", "<End>")
 nnoremap("<C-a>", "gg<S-v>G") -- select all
 nnoremap("<F3>", "gg=G<C-o>") -- reformat entire file with F3
 
--- Split window
-nnoremap("ss", ":split<CR><C-w>w")
+-- Split window vertical
 nnoremap("sv", ":vsplit<CR><C-w>w")
 
 -- Move window

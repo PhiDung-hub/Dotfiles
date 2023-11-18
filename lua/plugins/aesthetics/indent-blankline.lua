@@ -1,6 +1,7 @@
 return {
   "lukas-reineke/indent-blankline.nvim", -- identation helpers
   main = "ibl",
+  enabled = true,
   config = function()
     local status, ibl = pcall(require, "ibl")
     if not status then

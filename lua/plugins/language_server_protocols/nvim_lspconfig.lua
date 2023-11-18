@@ -2,8 +2,17 @@ return {
   "neovim/nvim-lspconfig",  -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
+    "folke/neodev.nvim",    -- signature help, docs and completion for the nvim lua API.
   },
   config = function()
+    -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+    local neodev_ok, neodev = pcall(require, "neodev")
+    if not neodev_ok then
+      neodev.setup({
+        -- add any options here, or leave empty to use the default settings
+      })
+    end
+
     local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
     if not lspconfig_ok then
       print("WARNING: lspconfig is unavailable")
@@ -36,7 +45,7 @@ return {
       capabilities = capabilities,
     })
 
-    -- jsx/tsx/svelte/vue
+    -- jsx/tsx/react
     lspconfig.tsserver.setup({
       on_attach = on_attach,
       filetypes = {
@@ -50,11 +59,13 @@ return {
       capabilities = capabilities,
     })
 
+    -- svelte
     lspconfig.svelte.setup({
       on_attach = on_attach,
       capabilities = capabilities,
     })
 
+    -- vue
     lspconfig.vue.setup({
       on_attach = on_attach,
       filetypes = {
@@ -84,7 +95,7 @@ return {
     })
 
     -- RUST
-    -- rustfmt formatting: https://rust-lang.github.io/rustfmt/?version=v1.5.1&search
+    -- rustfmt formatting: https://rust-lang.github.io/rustfmt
     -- rust_analyzer config: https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
     lspconfig.rust_analyzer.setup({
       on_attach = on_attach,
@@ -138,6 +149,28 @@ return {
     lspconfig.solidity_ls_nomicfoundation.setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "solidity" },
+      single_file_support = true,
+    })
+    lspconfig.efm.setup({
+      filetypes = { "solidity" },
+      settings = {
+        languages = {
+          solidity = {
+            lintStdin = true,                       -- pipe buffer content to solhint
+            lintIgnoreExitCode = true,              -- because exit code 1 is common
+            lintCommand = "solhint 'src/**/*.sol'", -- default format stylish
+            lintFormats = {
+              "%*[ ]%l:%c%*[ ]%trror%*[ ]%m",
+              "%*[ ]%l:%c%*[ ]%tarning%*[ ]%m",
+              "%f:%l:%c: %m [%trror/%r]",
+              "%f:%l:%c: %m [%tarning/%r]",
+            },
+            lintSource = "solhint",
+            rootMakers = { ".solhint.json" },
+          },
+        },
+      },
     })
 
     -- SQL
