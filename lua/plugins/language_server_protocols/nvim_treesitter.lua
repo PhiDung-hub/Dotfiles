@@ -28,18 +28,25 @@ return {
     end
 
     -- nvim-ts-context-commentstring plugin: https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
-    local ts_context_installed, _ = pcall(require, "ts_context_commentstring")
+    local ts_context_installed, ts_context_commentstring = pcall(require, "ts_context_commentstring")
     if not ts_context_installed then
       print("WARNING: ts-context-commentstring is unavailable.")
       return
     end
 
+    ts_context_commentstring.setup({})
+    vim.g.skip_ts_context_commentstring_module = true
+
     -- Comment plugin: https://github.com/numToStr/Comment.nvim
-    local comment_installed, _ = pcall(require, "Comment")
+    local comment_installed, comment = pcall(require, "Comment")
     if not comment_installed then
       print("WARNING: Comment.nvim is unavailable")
       return
     end
+
+    comment.setup({
+      pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+    })
 
     ts.setup({
       highlight = {
@@ -98,11 +105,6 @@ return {
           "RainbowDelimiterCyan",
           "RainbowDelimiterRed",
         },
-      },
-
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
       },
     })
 

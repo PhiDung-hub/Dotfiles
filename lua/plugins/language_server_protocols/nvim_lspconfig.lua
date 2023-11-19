@@ -146,31 +146,9 @@ return {
     })
 
     -- Solidity
-    lspconfig.efm.setup({
-      filetypes = { "solidity" },
-      settings = {
-        languages = {
-          solidity = {
-            lintStdin = true, -- pipe buffer content to solhint
-            lintIgnoreExitCode = true, -- because exit code 1 is common
-            lintCommand = "solhint 'src/**/*.sol'", -- default format stylish
-            lintFormats = {
-              "%*[ ]%l:%c%*[ ]%trror%*[ ]%m",
-              "%*[ ]%l:%c%*[ ]%tarning%*[ ]%m",
-              "%f:%l:%c: %m [%trror/%r]",
-              "%f:%l:%c: %m [%tarning/%r]",
-            },
-            lintSource = "solhint",
-            rootMakers = { ".solhint.json" },
-          },
-        },
-      },
-    })
     lspconfig.solidity_ls_nomicfoundation.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "solidity" },
-      single_file_support = true,
     })
 
     -- SQL
@@ -221,7 +199,7 @@ return {
     })
 
     -- Diagnostic symbols in the sign column (gutter)
-    local signs = { Error = "", Warning = "", Hint = "💡", Information = "" }
+    local signs = { Error = "", Warn = "", Hint = "💡", Info = "" }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
