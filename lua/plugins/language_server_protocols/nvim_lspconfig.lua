@@ -1,8 +1,8 @@
 return {
-  "neovim/nvim-lspconfig",  -- https://github.com/neovim/nvim-lspconfig
+  "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
-    "folke/neodev.nvim",    -- signature help, docs and completion for the nvim lua API.
+    "folke/neodev.nvim", -- signature help, docs and completion for the nvim lua API.
   },
   config = function()
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
@@ -146,19 +146,13 @@ return {
     })
 
     -- Solidity
-    lspconfig.solidity_ls_nomicfoundation.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "solidity" },
-      single_file_support = true,
-    })
     lspconfig.efm.setup({
       filetypes = { "solidity" },
       settings = {
         languages = {
           solidity = {
-            lintStdin = true,                       -- pipe buffer content to solhint
-            lintIgnoreExitCode = true,              -- because exit code 1 is common
+            lintStdin = true, -- pipe buffer content to solhint
+            lintIgnoreExitCode = true, -- because exit code 1 is common
             lintCommand = "solhint 'src/**/*.sol'", -- default format stylish
             lintFormats = {
               "%*[ ]%l:%c%*[ ]%trror%*[ ]%m",
@@ -171,6 +165,12 @@ return {
           },
         },
       },
+    })
+    lspconfig.solidity_ls_nomicfoundation.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "solidity" },
+      single_file_support = true,
     })
 
     -- SQL
@@ -221,7 +221,7 @@ return {
     })
 
     -- Diagnostic symbols in the sign column (gutter)
-    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    local signs = { Error = "", Warning = "", Hint = "💡", Information = "" }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
