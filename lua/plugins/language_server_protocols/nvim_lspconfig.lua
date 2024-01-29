@@ -128,13 +128,12 @@ return {
     lspconfig.clangd.setup({
       on_attach = on_attach,
       capabilities = clangd_cap,
+      filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
       cmd = {
         "clangd",
         "--background-index",
         "--pch-storage=memory",
         "--clang-tidy",
-        "--suggest-missing-includes",
-        "--cross-file-rename",
         "--completion-style=detailed",
       },
     })

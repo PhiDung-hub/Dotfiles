@@ -1,20 +1,18 @@
 return {
-  "hrsh7th/nvim-cmp", -- Code Completion.
+  "hrsh7th/nvim-cmp",         -- Code Completion.
   dependencies = {
-    "onsails/lspkind-nvim", -- vscode-like pictograms.
-    "L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
-    "hrsh7th/cmp-buffer", -- nvim-cmp source for buffers (tab)
-    "tzachar/cmp-tabnine", -- support for tabnine
-    "hrsh7th/cmp-cmdline", -- autocompletion for cmdline
+    "onsails/lspkind-nvim",   -- vscode-like pictograms.
+    "hrsh7th/cmp-buffer",     -- nvim-cmp source for buffers (tab)
+    "tzachar/cmp-tabnine",    -- support for tabnine
+    "hrsh7th/cmp-cmdline",    -- autocompletion for cmdline
     "zbirenbaum/copilot-cmp", -- support for copilot
   },
   config = function()
     local status, cmp = pcall(require, "cmp")
     local status2, lspkind = pcall(require, "lspkind")
-    local status3, luasnip = pcall(require, "luasnip")
 
-    if not (status and status2 and status3) then
-      print("WARNING: nvim-cmp | lspkind | luasnip is unavailable.")
+    if not (status and status2) then
+      print("WARNING: nvim-cmp | lspkind is unavailable.")
       return
     end
 
@@ -25,7 +23,7 @@ return {
 
     local source_mapping = {
       buffer = "[Buffer]",
-      nvim_lsp = "[Nvim_LSP]",
+      nvim_lsp = "[LSP]",
       nvim_lua = "[Lua]",
       cmp_tabnine = "[TabNine]",
       copilot = "[Copilot]",
@@ -36,14 +34,9 @@ return {
 
     ---@diagnostic disable-next-line
     cmp.setup({
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
       native_menu = false,
       mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
@@ -54,8 +47,6 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
           elseif has_words_before() then
             cmp.complete()
           else
@@ -65,8 +56,6 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable( -1) then
-            luasnip.jump( -1)
           else
             fallback()
           end
@@ -75,7 +64,6 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "buffer" },
-        { name = "luasnip" },
         { name = "cmp_tabnine", group_index = 1 },
         { name = "copilot",     group_index = 0 },
       }),

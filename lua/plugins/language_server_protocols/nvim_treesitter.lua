@@ -81,6 +81,7 @@ return {
         "yaml",
         "toml",
         "gitignore",
+        "proto",
       },
 
       autotag = {
