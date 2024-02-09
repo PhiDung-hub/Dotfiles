@@ -14,10 +14,17 @@ return {
     end
 
     -- Config source: https://github.com/nvim-neo-tree/neo-tree.nvim#longer-example-for-packer
-
     neotree.setup({
       enable_git_status = true,
       enable_diagnostics = true,
+      event_handlers = {
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function(_)
+            vim.cmd("setlocal relativenumber")
+          end,
+        },
+      },
       default_component_configs = {
         container = {
           enable_character_fade = true,
@@ -39,7 +46,6 @@ return {
         icon = {
           folder_closed = "",
           folder_open = "",
-          folder_empty = "ﰊ",
           -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
           -- then these will never be used.
           default = "*",
@@ -129,12 +135,6 @@ return {
             ["]g"] = "next_git_modified",
           },
         },
-      },
-      event_handlers = {
-        event = "neo_tree_buffer_enter",
-        handler = function(_)
-          vim.cmd("set number")
-        end,
       },
       buffers = {
         follow_current_file = { enabled = true }, -- This will find and focus the file in the active buffer every

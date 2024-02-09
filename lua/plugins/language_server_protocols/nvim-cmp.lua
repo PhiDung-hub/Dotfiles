@@ -1,18 +1,20 @@
 return {
-  "hrsh7th/nvim-cmp",         -- Code Completion.
+  "hrsh7th/nvim-cmp", -- Code Completion.
   dependencies = {
-    "onsails/lspkind-nvim",   -- vscode-like pictograms.
-    "hrsh7th/cmp-buffer",     -- nvim-cmp source for buffers (tab)
-    "tzachar/cmp-tabnine",    -- support for tabnine
-    "hrsh7th/cmp-cmdline",    -- autocompletion for cmdline
+    "onsails/lspkind-nvim", -- vscode-like pictograms.
+    "hrsh7th/cmp-buffer", -- nvim-cmp source for buffers (tab)
+    "hrsh7th/cmp-cmdline", -- autocompletion for cmdline
+    "tzachar/cmp-tabnine", -- support for tabnine
     "zbirenbaum/copilot-cmp", -- support for copilot
+    "L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
   },
   config = function()
     local status, cmp = pcall(require, "cmp")
     local status2, lspkind = pcall(require, "lspkind")
+    local status3, luasnip = pcall(require, "luasnip")
 
-    if not (status and status2) then
-      print("WARNING: nvim-cmp | lspkind is unavailable.")
+    if not (status and status2 and status3) then
+      print("WARNING: nvim-cmp | lspkind | luasnip is unavailable.")
       return
     end
 
@@ -30,11 +32,14 @@ return {
       path = "[Path]",
     }
 
-    local compare = require("cmp.config.compare")
-
-    ---@diagnostic disable-next-line
+    -- https://github.com/hrsh7th/nvim-cmp?tab=readme-ov-file#recommended-configuration
     cmp.setup({
-      native_menu = false,
+      snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+          luasnip.lsp_expand(args.body) -- For `luasnip` users.
+        end,
+      },
       mapping = cmp.mapping.preset.insert({
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -64,9 +69,10 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "buffer" },
-        { name = "cmp_tabnine", group_index = 1 },
-        { name = "copilot",     group_index = 0 },
+        { name = "cmp_tabnine" },
+        { name = "copilot" },
       }),
+      native_menu = false,
       formatting = {
         -- Details about function: https://github.com/onsails/lspkind.nvim/blob/master/lua/lspkind/init.lua#L167
         format = lspkind.cmp_format({
@@ -92,20 +98,20 @@ return {
           end,
         }),
       },
-      sorting = {
-        priority_weight = 1,
-        comparators = {
-          require("cmp_tabnine.compare"),
-          compare.offset,
-          compare.exact,
-          compare.score,
-          compare.recently_used,
-          compare.kind,
-          compare.sort_text,
-          compare.length,
-          compare.order,
-        },
-      },
+      -- sorting = {
+      --   priority_weight = 1,
+      --   comparators = {
+      --     require("cmp_tabnine.compare"),
+      --     compare.offset,
+      --     compare.exact,
+      --     compare.score,
+      --     compare.recently_used,
+      --     compare.kind,
+      --     compare.sort_text,
+      --     compare.length,
+      --     compare.order,
+      --   },
+      -- },
     })
 
     cmp.setup.cmdline(":", {
