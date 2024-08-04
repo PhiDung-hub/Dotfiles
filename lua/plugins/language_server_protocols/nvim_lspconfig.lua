@@ -59,21 +59,6 @@ return {
       capabilities = capabilities,
     })
 
-    -- svelte
-    lspconfig.svelte.setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-    })
-
-    -- vue
-    lspconfig.vue.setup({
-      on_attach = on_attach,
-      filetypes = {
-        "vue",
-      },
-      capabilities = capabilities,
-    })
-
     -- html & css & Tailwindcss
     lspconfig.emmet_ls.setup({
       on_attach = on_attach,
@@ -90,6 +75,17 @@ return {
       },
     })
     lspconfig.tailwindcss.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
+    -- GO
+    lspconfig.gopls.setup({
+      settings = {
+        gopls = {
+          gofumpt = true,
+        },
+      },
       on_attach = on_attach,
       capabilities = capabilities,
     })
@@ -173,7 +169,7 @@ return {
       })
     end
 
-    -- lua & neovim
+    -- lua for neovim
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       single_file_support = true,
@@ -189,6 +185,23 @@ return {
           },
         },
       },
+    })
+    print(lspconfig.lua_ls)
+
+    local func_config = {
+      default_config = {
+        cmd = { "/usr/local/bin/vscode-func-server", "--stdio" },
+        filetypes = { "func" },
+        root_dir = function()
+          return vim.fn.getcwd()
+        end,
+      },
+    }
+    local configs = require("lspconfig.configs")
+    configs.func = func_config
+    lspconfig.func.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
     })
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

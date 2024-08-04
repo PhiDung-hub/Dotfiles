@@ -1,5 +1,5 @@
 return {
-  "nvimtools/none-ls.nvim",  -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
+  "nvimtools/none-ls.nvim", -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
   dependencies = {
     "nvim-lua/plenary.nvim", -- premade lua functions
   },
@@ -29,16 +29,18 @@ return {
 
         -- python
         -- diagnostics.pylint,
-        -- formatting.black.with({ extra_args = { "--fast" } }),
+        formatting.black,
+
+        -- go
+        formatting.gofumpt.with({
+          extra_args = { "-l", "140" }, -- Set the line length limit to 140 characters
+        }),
 
         -- JS, JSX, TSX
         -- diagnostics.eslint.with({
         --   diagnostics_format = "[eslint] #{m}\n(#{c})",
         -- }),
         -- formatting.eslint,
-
-        -- rust
-        formatting.rustfmt,
       },
     })
 

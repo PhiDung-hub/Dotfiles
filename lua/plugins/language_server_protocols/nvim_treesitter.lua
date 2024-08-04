@@ -1,12 +1,30 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "HiPhish/rainbow-delimiters.nvim",             -- rainbow bracket: https://github.com/HiPhish/rainbow-delimeters.nvim
+    "HiPhish/rainbow-delimiters.nvim", -- rainbow bracket: https://github.com/HiPhish/rainbow-delimeters.nvim
     "JoosepAlviste/nvim-ts-context-commentstring", -- tsx/jsx comment helper, use with Comment.nvim
-    "windwp/nvim-ts-autotag",                      -- auto rename tags
-    "numToStr/Comment.nvim",                       -- Comment string, enhanced default `gc` behavior.
+    "windwp/nvim-ts-autotag", -- auto rename tags
+    "numToStr/Comment.nvim", -- Comment string, enhanced default `gc` behavior.
   },
   config = function()
+    -- NOTE: for Tact-lang (TON blockchain)
+    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    -- Adds tree-sitter-tact support
+    parser_config.tact = {
+      install_info = {
+        url = "~/open_softwares/tree-sitter-tact", -- a path to the cloned repo
+        files = { "src/parser.c" },
+        branch = "main",
+        generate_requires_npm = false,
+        requires_generate_from_grammar = false,
+      },
+    }
+    vim.filetype.add({
+      extension = {
+        tact = "tact",
+      },
+    })
+
     local ts_installed, ts = pcall(require, "nvim-treesitter.configs")
     if not ts_installed then
       print("WARNING: nvim-treesitter is unavailable.")
@@ -71,7 +89,6 @@ return {
         "typescript",
         "tsx",
         "sql",
-        "svelte",
         "json",
         "html",
         "css",
@@ -82,6 +99,7 @@ return {
         "toml",
         "gitignore",
         "proto",
+        "go",
       },
 
       autotag = {
@@ -109,7 +127,6 @@ return {
       },
     })
 
-    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-    parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+    parser_config.tsx.filetype_to_parsername = { "javascript", "typescript", "javascript.jsx", "typescript.tsx" }
   end,
 }

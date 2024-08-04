@@ -60,7 +60,7 @@ return {
 
     -- Common use cases.
     nnoremap("K", "<cmd>Lspsaga hover_doc<CR>")
-    nnoremap("gd", "<cmd>Lspsaga lsp_finder<CR>")
+    nnoremap("gf", "<cmd>Lspsaga finder<CR>")
     nnoremap("gp", "<cmd>Lspsaga peek_definition<CR>")
     nnoremap("gr", "<Cmd>Lspsaga rename<CR>")
     nnoremap("gd", "<Cmd>Lspsaga goto_definition<CR>")

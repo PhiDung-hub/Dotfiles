@@ -1,5 +1,6 @@
 return {
   "folke/noice.nvim", -- replaces the UI for messages, cmdline and the popupmenu
+  enabled = false,
   config = function()
     local status, noice = pcall(require, "noice")
     if not status then

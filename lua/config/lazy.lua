@@ -1,3 +1,26 @@
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- This file is automatically loaded by plugins.config
 local opt = vim.opt
 
@@ -32,11 +55,6 @@ opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.hidden = true -- hide abandoned buffer
-
-if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append({ C = true })
-end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
@@ -106,3 +124,15 @@ vim.g.latex_view_method = "zathura"
 vim.g.latex_view_general_viewer = "zathura"
 vim.g.latex_view_general_options = "--synctex-forward %l:1:%f %s"
 vim.g.latex_view_general_options_latexmk = "--synctex=1"
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+    { import = "plugins.editor_utils" },
+    { import = "plugins.language_server_protocols" },
+    { import = "plugins.language_server_protocols.3rd_party_plugins" },
+    { import = "plugins.gits" },
+    { import = "plugins.aesthetics" },
+    { import = "plugins.aesthetics.color_schemes" },
+  },
+})

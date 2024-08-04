@@ -1,10 +1,10 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   keys = {
-    { "<M-t>", "<cmd>Neotree focus toggle<cr>", desc = "NeoTree Toggle" },
-    { "<C-M-G>", "<cmd>Neotree float git_status toggle<cr>", desc = "NeoTree Open Float Git Status" },
-    { "<C-M-B>", "<cmd>Neotree float buffers toggle<cr>", desc = "NeoTree Open Float  Active Buffers" },
-    { "<C-M-T>", "<cmd>Neotree float filesystem toggle<cr>", desc = "NeoTree Open Float File System" },
+    { "<M-t>", "<cmd>Neotree left toggle<cr>", desc = "NeoTree Toggle" },
+    { "<S-M-G>", "<cmd>Neotree float git_status toggle<cr>", desc = "NeoTree Open Float Git Status" },
+    { "<S-M-B>", "<cmd>Neotree float buffers toggle<cr>", desc = "NeoTree Open Float  Active Buffers" },
+    { "<S-M-T>", "<cmd>Neotree float filesystem toggle<cr>", desc = "NeoTree Open Float File System" },
   },
   config = function()
     local status, neotree = pcall(require, "neo-tree")

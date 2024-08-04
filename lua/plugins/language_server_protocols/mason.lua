@@ -33,10 +33,10 @@ return {
       "clangd",
       "rust_analyzer",
       "taplo",
-      "marksman",
       "prismals",
       "lua_ls",
       "sqlls",
+      "gopls",
     }
 
     -- Installing solhint

@@ -17,7 +17,7 @@ return {
     ibl.setup({
       indent = {
         char = "▏",
-        tab_char = nil,
+        tab_char = "▏",
         smart_indent_cap = true,
         priority = 1,
       },

@@ -68,9 +68,10 @@ return {
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "buffer" },
+        { name = "treesitter" },
         { name = "cmp_tabnine" },
         { name = "copilot" },
+        { name = "buffer" },
       }),
       native_menu = false,
       formatting = {
