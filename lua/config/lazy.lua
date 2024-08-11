@@ -108,14 +108,14 @@ opt.foldenable = true
 
 -- Define the clipboard settings for WSL
 vim.g.clipboard = {
-  name = "LinuxClipboard",
+  name = "Linux-Clipboard",
   copy = {
-    ["+"] = "xclip -selection clipboard -in -quiet",
-    ["*"] = "xclip -selection primary -in -quiet",
+    ['+'] = 'xsel --clipboard --input',
+    ['*'] = 'xsel --input',
   },
   paste = {
-    ["+"] = "xclip -selection clipboard -out -quiet",
-    ["*"] = "xclip -selection primary -out -quiet",
+    ['+'] = 'xsel --clipboard --output',
+    ['*'] = 'xsel --output',
   },
   cache_enabled = 0,
 }
