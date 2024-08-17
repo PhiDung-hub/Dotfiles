@@ -8,5 +8,10 @@ return {
   config = function()
     -- auto close current preview window when change to another buffer
     vim.g.mkdp_auto_close = 0
+    vim.g.mkdp_filetypes = {
+      "markdown",
+      "mdx",
+      "lsp_markdown",
+    }
   end,
 }

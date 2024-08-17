@@ -92,15 +92,7 @@ opt.cursorline = true -- Enable highlight cursor line
 opt.cursorlineopt = "number,line" -- Include number & whole line
 vim.report = 5
 
-vim.filetype.add({
-  extension = {
-    mdx = "markdown",
-  },
-  filename = {},
-  pattern = {},
-})
-
--- For UFO-nvim (folding)
+-- Forr UFO-nvim (folding)
 opt.foldcolumn = "1"
 opt.foldlevel = 99
 opt.foldlevelstart = 99

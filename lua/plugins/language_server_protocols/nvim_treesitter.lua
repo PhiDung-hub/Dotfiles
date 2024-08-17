@@ -1,10 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "HiPhish/rainbow-delimiters.nvim", -- rainbow bracket: https://github.com/HiPhish/rainbow-delimeters.nvim
+    "HiPhish/rainbow-delimiters.nvim",             -- rainbow bracket: https://github.com/HiPhish/rainbow-delimeters.nvim
     "JoosepAlviste/nvim-ts-context-commentstring", -- tsx/jsx comment helper, use with Comment.nvim
-    "windwp/nvim-ts-autotag", -- auto rename tags
-    "numToStr/Comment.nvim", -- Comment string, enhanced default `gc` behavior.
+    "windwp/nvim-ts-autotag",                      -- auto rename tags
+    "numToStr/Comment.nvim",                       -- Comment string, enhanced default `gc` behavior.
   },
   config = function()
     -- NOTE: for Tact-lang (TON blockchain)
@@ -93,7 +93,6 @@ return {
         "html",
         "css",
         "scss",
-        "markdown",
         "markdown_inline",
         "yaml",
         "toml",

@@ -1,8 +1,8 @@
 return {
-  "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
+  "neovim/nvim-lspconfig",  -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
-    "folke/neodev.nvim", -- signature help, docs and completion for the nvim lua API.
+    "folke/neodev.nvim",    -- signature help, docs and completion for the nvim lua API.
   },
   config = function()
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
@@ -39,9 +39,15 @@ return {
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- markdown
-    lspconfig.marksman.setup({
+    vim.filetype.add({
+      extension = {
+        mdx = "lsp_markdown",
+      },
+    })
+
+    lspconfig.ltex.setup({
       on_attach = on_attach,
-      filetypes = { "markdown", "markdown.mdx" },
+      filetypes = { "markdown" },
       capabilities = capabilities,
     })
 
@@ -210,16 +216,18 @@ return {
       severity_sort = true,
     })
 
-    -- Diagnostic symbols in the sign column (gutter)
-    local signs = { Error = "", Warn = "", Hint = "💡", Info = "" }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
     vim.diagnostic.config({
-      float = {
-        source = "if_many", -- Or "if_many"
+      virtual_text = {
+        prefix = "●",
+      },
+      severity_sort = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
+        },
       },
     })
   end,
