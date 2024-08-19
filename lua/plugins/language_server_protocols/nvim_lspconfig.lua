@@ -1,8 +1,8 @@
 return {
-  "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
+  "neovim/nvim-lspconfig",  -- https://github.com/neovim/nvim-lspconfig
   dependencies = {
     "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP.
-    "folke/neodev.nvim", -- signature help, docs and completion for the nvim lua API.
+    "folke/neodev.nvim",    -- signature help, docs and completion for the nvim lua API.
   },
   config = function()
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
@@ -37,13 +37,6 @@ return {
 
     -- Set up completion using nvim_cmp with LSP source
     local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    -- markdown
-    lspconfig.marksman.setup({
-      on_attach = on_attach,
-      filetypes = { "markdown", "markdown.mdx" },
-      capabilities = capabilities,
-    })
 
     -- jsx/tsx/react
     lspconfig.tsserver.setup({
